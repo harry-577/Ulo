@@ -1,1 +1,1 @@
-Trying out my first Property management App
+Trying out my biginner codes
