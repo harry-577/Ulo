@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ulo Tenants' page</title>
+    <!-- <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    /> -->
+    <link rel="stylesheet" href="output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      .modal-content {
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+      /* .option-border {
+        border-bottom: 1px solid #f80303;
+      } */
+    </style>
+  </head>
+  <body class="bg-gray-500">
+    <header
+      class="bg-gray-800 shadow p-2 md:p-4 flex justify-between items-center z-10 relative"
+    >
+      <div class="flex items-center">
+        <!-- <button
+          id="backButton"
+          class="mr-4 ml-2 md:mr-4 md:ml-4 text-white text-2xl"
+        > -->
+        <!-- Single line html 'a' tag code for back arrow. -->
+        <!-- <a href="javascript:history.back()">
+            <div class="flex flex-col justify-center mx-auto items-center">
+              <img
+                src="../Images4Estate/arrow_back_ios_24dp.svg"
+                alt=""
+                class="w-6 h-6 md:w-8 md:h-8 border-solid border-white rounded-full"
+              />
+              <p
+                class="hidden md:block mr-4 -mt-1.5 text-white text-sm flex-nowrap"
+              >
+                Back
+              </p>
+            </div>
+          </a>
+        </button> -->
+        <a href="estate1.html">
+          <div
+            class="flex flex-col justify-center mx-auto items-center md:mx-4 pl-2"
+          >
+            <img
+              src="../Images4Estate/house_5 google.svg"
+              alt=""
+              class="w-6 h-6 md:w-8 md:h-8 mr-4 md:mr-6"
+            />
+            <p class="hidden md:block mr-4 -mt-1.5 text-white text-sm">Home</p>
+          </div>
+        </a>
+        <a href="buildingdb2.html">
+          <div class="flex flex-col justify-center mx-auto items-center">
+            <img
+              src="../Images4Estate/house_3 google.svg"
+              alt=""
+              class="w-6 h-6 md:w-8 md:h-8 mr-4"
+            />
+            <p class="hidden md:block mr-4 -mt-1 text-white text-sm">
+              Buildings
+            </p>
+          </div>
+        </a>
+        <!-- <h1 class="text-white text-xl font-bold">Tenants</h1> -->
+      </div>
+      <div class="flex items-center">
+        <div
+          class="flex flex-col md:flex-row items-center text-sm md:text-base"
+        >
+          <!-- Undo stops here! -->
+          <div class="pb-2 md:pb-0">
+            <select
+              id="searchFilter"
+              name="searchFilter"
+              class="border pl-0 md:pl-2 py-0 rounded border-blue-400 w-40 md:w48 h-8 md:h-10 mr-4 md:mr-1"
+            >
+              <option value="allTenant">All Tenants</option>
+              <option value="tenantSearch">Tenant search</option>
+              <option value="building" class="">Building search</option>
+              <option value="paidTenant">Paid Tenants</option>
+              <option value="balance">Balance due</option>
+              <option value="overdue">Rent due</option>
+            </select>
+          </div>
+          <div class="flex items-center ml-0">
+            <input
+              type="text"
+              id="searchBox"
+              placeholder="Search..."
+              class="border border-blue-400 pl-1 md:pl-2 rounded-tl rounded-bl mr-0 w-32 md:w-40 h-8 md:h-10"
+            />
+            <img
+              id="searchImage"
+              src="../Images4Estate/Search.256.png"
+              alt="Search Image"
+              class="h-8 w-8 md:h-10 md:w-10 rounded-tr rounded-br bg-blue-400 hover:bg-green-400 p-1 mr-4 md:mr-8 cursor-pointer"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center">
+        <button
+          id="addTenantButton"
+          class="text-white text-4xl mr-2 md:mr-4 pb-0"
+        >
+          <div class="flex flex-col justify-center mx-auto items-center">
+            <img
+              src="../Images4Estate/person_add_gooleFont.svg"
+              alt=""
+              class="w-6 h-6 md:w-8 md:h-8 mr-4 md:mr-3"
+            />
+            <p
+              class="hidden md:block mr-4 ml-2 -mt-1.5 text-white text-sm flex-nowrap"
+            >
+              Add tenant
+            </p>
+          </div>
+        </button>
+        <a href="index.html">
+          <div class="flex flex-col justify-center mx-auto items-center">
+            <img
+              src="../Images4Estate/logout_Google.svg"
+              alt=""
+              class="w-6 h-6 md:w-8 md:h-8 mr-2"
+            />
+            <p
+              class="hidden md:block mr-4 -mt-1.5 text-white text-sm flex-nowrap"
+            >
+              logout
+            </p>
+          </div>
+        </a>
+      </div>
+    </header>
+    <div class="bg-blue-100 h-3 -mt-2 w-screen"></div>
+    <main class="p-0 md:p-0">
+      <div class="flex justify-center">
+        <h1
+          class="bg-blue-100 py-1 px-6 rounded-full text-gray-900 text-xl font-semibold md:font-bold mt-4 mb-4 md:mb-4"
+        >
+          Tenants' page
+        </h1>
+      </div>
+      <div
+        id="tenantList"
+        class="space-y-2 md:space-y-2 md:w-2/3 lg:w-3/4 md:m-auto mx-2"
+      ></div>
+    </main>
+
+    <!-- Tenant Form Modal -->
+    <div
+      id="tenantFormModal"
+      class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden"
+    >
+      <div
+        class="bg-gray-200 p-6 rounded shadow-lg w-full max-w-lg modal-content"
+      >
+        <h2 class="text-xl font-bold mb-4">Add Tenant</h2>
+        <form id="tenantForm">
+          <div class="mb-4">
+            <label for="tenantName" class="block text-sm font-medium"
+              >Tenant's Name</label
+            >
+            <input
+              type="text"
+              id="tenantName"
+              class="border p-2 rounded w-full"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="tenantPhone" class="block text-sm font-medium"
+              >Tenant's Phone Number</label
+            >
+            <input
+              type="text"
+              id="tenantPhone"
+              class="border p-2 rounded w-full"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="buildingName" class="block text-sm font-medium"
+              >Building's Name</label
+            >
+            <input
+              type="text"
+              id="buildingName"
+              class="border p-2 rounded w-full"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="flatAddress" class="block text-sm font-medium"
+              >Address of Flat</label
+            >
+            <input
+              type="text"
+              id="flatAddress"
+              class="border p-2 rounded w-full"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="currency" class="block text-sm font-medium"
+              >Currency</label
+            >
+            <select id="currency" class="border p-2 rounded w-full">
+              <option value="NGN">Naira</option>
+              <option value="USD">US Dollar</option>
+              <option value="EUR">Euros</option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <label for="costOfRent" class="block text-sm font-medium"
+              >Cost of Rent</label
+            >
+            <input
+              type="number"
+              id="costOfRent"
+              class="border p-2 rounded w-full"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="rentPaid" class="block text-sm font-medium"
+              >Rent Amount Paid</label
+            >
+            <input
+              type="number"
+              id="rentPaid"
+              class="border p-2 rounded w-full"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="balanceDue" class="block text-sm font-medium"
+              >Balance Rent Amount Due</label
+            >
+            <input
+              type="text"
+              id="balanceDue"
+              class="border p-2 rounded w-full"
+              readonly
+            />
+          </div>
+          <div class="mb-4">
+            <label for="paymentDate" class="block text-sm font-medium"
+              >Date of Payment</label
+            >
+            <input
+              type="date"
+              id="paymentDate"
+              class="border p-2 rounded w-full"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="nextPaymentDate" class="block text-sm font-medium"
+              >Next Payment Due Date</label
+            >
+            <input
+              type="date"
+              id="nextPaymentDate"
+              class="border p-2 rounded w-full"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="notes" class="block text-sm font-medium">Notes</label>
+            <textarea id="notes" class="border p-2 rounded w-full"></textarea>
+          </div>
+          <div class="mb-4">
+            <label for="tenantImage" class="block text-sm font-medium"
+              >Tenant Image</label
+            >
+            <input
+              type="file"
+              id="tenantImage"
+              class="border p-2 rounded w-full"
+            />
+          </div>
+          <div class="flex justify-end space-x-2">
+            <button
+              type="button"
+              id="submitTenantButton"
+              class="bg-green-500 text-white p-2 rounded border-2 border-white shadow-md"
+            >
+              Submit
+            </button>
+            <button
+              type="button"
+              id="saveTenantButton"
+              class="bg-blue-500 text-white p-2 rounded hidden border-2 border-white shadow-md"
+            >
+              Save
+            </button>
+            <button
+              type="button"
+              id="cancelButton"
+              class="bg-red-500 text-white p-2 rounded border-2 border-white shadow-md"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- <script src="app.js"></script> -->
+    <script>
+      // Clear IndexedDB (run this once) to help clear errors with indexedDB,
+      // Comment out the code below after running it once! and save your code
+      // indexedDB.deleteDatabase("tenantsDB");
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const addTenantButton = document.getElementById("addTenantButton");
+        const tenantFormModal = document.getElementById("tenantFormModal");
+        const submitTenantButton =
+          document.getElementById("submitTenantButton");
+        const saveTenantButton = document.getElementById("saveTenantButton");
+        const cancelButton = document.getElementById("cancelButton");
+        const tenantForm = document.getElementById("tenantForm");
+        const tenantList = document.getElementById("tenantList");
+
+        let db;
+        let currentTenantId = null;
+
+        // Open IndexedDB
+        const request = indexedDB.open("tenantsDB", 1);
+
+        request.onerror = (event) => {
+          console.error("Database error:", event.target.errorCode);
+        };
+
+        request.onsuccess = (event) => {
+          db = event.target.result;
+          loadTenants();
+        };
+
+        request.onupgradeneeded = (event) => {
+          db = event.target.result;
+          const objectStore = db.createObjectStore("tenants", {
+            keyPath: "id",
+            autoIncrement: true,
+          });
+          objectStore.createIndex("name", "name", { unique: false });
+        };
+
+        addTenantButton.addEventListener("click", () => {
+          tenantFormModal.classList.remove("hidden");
+          submitTenantButton.classList.remove("hidden");
+          saveTenantButton.classList.add("hidden");
+          currentTenantId = null;
+        });
+
+        cancelButton.addEventListener("click", () => {
+          tenantFormModal.classList.add("hidden");
+        });
+
+        submitTenantButton.addEventListener("click", () => {
+          const tenant = {
+            name: document.getElementById("tenantName").value,
+            phone: document.getElementById("tenantPhone").value,
+            building: document.getElementById("buildingName").value,
+            address: document.getElementById("flatAddress").value,
+            currency: document.getElementById("currency").value,
+            costOfRent: parseFloat(document.getElementById("costOfRent").value),
+            rentPaid: parseFloat(document.getElementById("rentPaid").value),
+            balanceDue:
+              parseFloat(document.getElementById("costOfRent").value) -
+              parseFloat(document.getElementById("rentPaid").value),
+            paymentDate: formatDate(
+              document.getElementById("paymentDate").value
+            ),
+            nextPaymentDate: formatDate(
+              document.getElementById("nextPaymentDate").value
+            ),
+            notes: document.getElementById("notes").value,
+            image: "",
+          };
+
+          const file = document.getElementById("tenantImage").files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+              tenant.image = reader.result;
+              saveTenant(tenant);
+            };
+            reader.readAsDataURL(file);
+          } else {
+            saveTenant(tenant);
+          }
+
+          tenantFormModal.classList.add("hidden");
+          tenantForm.reset();
+        });
+
+        saveTenantButton.addEventListener("click", () => {
+          const tenant = {
+            id: currentTenantId,
+            name: document.getElementById("tenantName").value,
+            phone: document.getElementById("tenantPhone").value,
+            building: document.getElementById("buildingName").value,
+            address: document.getElementById("flatAddress").value,
+            currency: document.getElementById("currency").value,
+            costOfRent: parseFloat(document.getElementById("costOfRent").value),
+            rentPaid: parseFloat(document.getElementById("rentPaid").value),
+            balanceDue:
+              parseFloat(document.getElementById("costOfRent").value) -
+              parseFloat(document.getElementById("rentPaid").value),
+            paymentDate: formatDate(
+              document.getElementById("paymentDate").value
+            ),
+            nextPaymentDate: formatDate(
+              document.getElementById("nextPaymentDate").value
+            ),
+            notes: document.getElementById("notes").value,
+            image: "",
+          };
+
+          const file = document.getElementById("tenantImage").files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+              tenant.image = reader.result;
+              updateTenant(tenant);
+            };
+            reader.readAsDataURL(file);
+          } else {
+            tenant.image =
+              document.getElementById("tenantImage").dataset.image || "";
+            updateTenant(tenant);
+          }
+
+          tenantFormModal.classList.add("hidden");
+          tenantForm.reset();
+        });
+
+        function saveTenant(tenant) {
+          const transaction = db.transaction(["tenants"], "readwrite");
+          const objectStore = transaction.objectStore("tenants");
+          objectStore.add(tenant);
+
+          transaction.oncomplete = () => {
+            tenantList.innerHTML = "";
+            loadTenants();
+          };
+
+          transaction.onerror = (event) => {
+            console.error("Transaction error:", event.target.errorCode);
+          };
+        }
+
+        function updateTenant(tenant) {
+          const transaction = db.transaction(["tenants"], "readwrite");
+          const objectStore = transaction.objectStore("tenants");
+          objectStore.put(tenant);
+
+          transaction.oncomplete = () => {
+            tenantList.innerHTML = "";
+            loadTenants();
+          };
+
+          transaction.onerror = (event) => {
+            console.error("Transaction error:", event.target.errorCode);
+          };
+        }
+
+        function loadTenants() {
+          const transaction = db.transaction(["tenants"], "readonly");
+          const objectStore = transaction.objectStore("tenants");
+
+          objectStore.openCursor().onsuccess = (event) => {
+            const cursor = event.target.result;
+            if (cursor) {
+              addTenantToList(cursor.value);
+              cursor.continue();
+            }
+          };
+        }
+        // UNDO CODE stop point for different shades of Tenant's display.
+        let tenantIndex = 0;
+
+        function addTenantToList(tenant) {
+          const tenantDiv = document.createElement("div");
+          const bgColor = tenantIndex % 2 === 0 ? "bg-blue-100" : "bg-blue-300";
+          tenantDiv.classList.add(
+            bgColor,
+            "py-2",
+            "px-2",
+            "rounded",
+            "shadow",
+            "flex",
+            "justify-between",
+            "items-center"
+            // My UNDO code stop point.
+          );
+          tenantDiv.innerHTML = `
+            <div class="px-4">
+                <div class="text-lg font-bold cursor-pointer tenant-name">${
+                  tenant.name
+                }</div>
+                <div class="flex space-x-2 mt-0">
+                    <div class="rounded text-sm text-white flex justify-center w-16 h-6 ${
+                      tenant.balanceDue > 0 ? "bg-red-800" : "bg-green-800"
+                    }">Payment</div>
+                    <div class=" rounded text-white flex justify-center w-16 h-6 ${
+                      new Date(tenant.nextPaymentDate) < new Date()
+                        ? "bg-red-800"
+                        : "bg-green-800"
+                    }">Lease</div>
+                </div>
+                <div class="tenant-details hidden">
+                    <p class="mt-3" >Phone: ${tenant.phone}</p>
+                    <p>Building: ${tenant.building}</p>
+                    <p>Address: ${tenant.address}</p>
+                    <p>Currency: ${tenant.currency}</p>
+                    <p>Cost of Rent: ${formatCurrency(
+                      tenant.costOfRent,
+                      tenant.currency
+                    )}</p>
+                    <p>Rent Paid: ${formatCurrency(
+                      tenant.rentPaid,
+                      tenant.currency
+                    )}</p>
+                    <p>Balance Due: ${formatCurrency(
+                      tenant.balanceDue,
+                      tenant.currency
+                    )}</p>
+                    <p>Payment Date: ${tenant.paymentDate}</p>
+                    <p>Next Payment Date: ${tenant.nextPaymentDate}</p>
+                    <p>Notes: ${tenant.notes}</p>
+                                        <img src="${
+                                          tenant.image
+                                        }" alt="Tenant Image" class="w-32 h-32 mt-4">
+                    <div class="flex space-x-2 mt-2">
+                        <button class="bg-blue-500 text-white p-2 border border-white-800 shadow-md rounded call-button"><i class="fa-solid fa-phone "></i> Call</button>
+                        <button class="bg-green-500 text-white p-2 border border-white-800 shadow-md rounded whatsapp-button"><i class="fa-brands fa-whatsapp "></i> WhatsApp</button>
+                    </div>
+                </div>
+                
+            </div>
+          
+            <div class="flex space-x-2 items-center">
+                <button class="w-9 h-9 flex items-center justify-center border border-white-800 bg-green-600 shadow-md text-white p-0 rounded share-button"><img src="../Images4Estate/share_google.svg" alt="" class="w-7 h-7" /></button>
+                <button class="w-9 h-9 flex items-center justify-center border border-white-800 bg-gray-600 shadow-md text-white p-0 rounded update-button"><img src="../Images4Estate/person_edit_Google.svg" alt="" class="w-7 h-7" /></button>
+                <button class="w-9 h-9 flex items-center justify-center border border-white-800 bg-red-600  shadow-md text-white p-0 rounded delete-button"><img src="../Images4Estate/person_cancel_Google.svg" alt="" class="w-7 h-7" /></button>
+            </div>
+        `;
+          tenantList.appendChild(tenantDiv);
+
+          tenantDiv
+            .querySelector(".tenant-name")
+            .addEventListener("click", () => {
+              tenantDiv
+                .querySelector(".tenant-details")
+                .classList.toggle("hidden");
+            });
+
+          tenantDiv
+            .querySelector(".share-button")
+            .addEventListener("click", () => {
+              shareTenant(tenant);
+            });
+
+          tenantDiv
+            .querySelector(".update-button")
+            .addEventListener("click", () => {
+              populateFormForUpdate(tenant);
+            });
+
+          tenantDiv
+            .querySelector(".delete-button")
+            .addEventListener("click", () => {
+              deleteTenant(tenant.id, tenantDiv);
+            });
+
+          tenantDiv
+            .querySelector(".call-button")
+            .addEventListener("click", () => {
+              window.location.href = `tel:${tenant.phone}`;
+            });
+
+          tenantDiv
+            .querySelector(".whatsapp-button")
+            .addEventListener("click", () => {
+              window.location.href = `https://wa.me/${tenant.phone}`;
+            });
+          tenantIndex++;
+        }
+        // UNDO point: code to ensure that Dates populate for update purposes.
+
+        function populateFormForUpdate(tenant) {
+          currentTenantId = tenant.id;
+          document.getElementById("tenantName").value = tenant.name;
+          document.getElementById("tenantPhone").value = tenant.phone;
+          document.getElementById("buildingName").value = tenant.building;
+          document.getElementById("flatAddress").value = tenant.address;
+          document.getElementById("currency").value = tenant.currency;
+          document.getElementById("costOfRent").value = tenant.costOfRent;
+          document.getElementById("rentPaid").value = tenant.rentPaid;
+          document.getElementById("paymentDate").value = formatDateForInput(
+            tenant.paymentDate
+          );
+          document.getElementById("nextPaymentDate").value = formatDateForInput(
+            tenant.nextPaymentDate
+          );
+          document.getElementById("notes").value = tenant.notes;
+          document.getElementById("tenantImage").dataset.image = tenant.image;
+
+          tenantFormModal.classList.remove("hidden");
+          submitTenantButton.classList.add("hidden");
+          saveTenantButton.classList.remove("hidden");
+        }
+
+        function formatDateForInput(dateString) {
+          const date = new Date(dateString);
+          const year = date.getFullYear();
+          const month = String(date.getMonth() + 1).padStart(2, "0");
+          const day = String(date.getDate()).padStart(2, "0");
+          return `${year}-${month}-${day}`;
+        }
+
+        function shareTenant(tenant) {
+          const tenantDetails = `
+            Name: ${tenant.name}
+            Phone: ${tenant.phone}
+            Building: ${tenant.building}
+            Address: ${tenant.address}
+            Currency: ${tenant.currency}
+            Cost of Rent: ${formatCurrency(tenant.costOfRent, tenant.currency)}
+            Rent Paid: ${formatCurrency(tenant.rentPaid, tenant.currency)}
+            Balance Due: ${formatCurrency(tenant.balanceDue, tenant.currency)}
+            Payment Date: ${tenant.paymentDate}
+            Next Payment Date: ${tenant.nextPaymentDate}
+            Notes: ${tenant.notes}
+        `;
+          if (navigator.share) {
+            navigator
+              .share({
+                title: "Tenant Details",
+                text: tenantDetails,
+                url: window.location.href,
+              })
+              .catch(console.error);
+          } else {
+            alert("Sharing not supported on this browser.");
+          }
+        }
+
+        function deleteTenant(id, tenantDiv) {
+          if (confirm("Are you sure you want to delete this tenant?")) {
+            const transaction = db.transaction(["tenants"], "readwrite");
+            const objectStore = transaction.objectStore("tenants");
+            objectStore.delete(id);
+
+            transaction.oncomplete = () => {
+              tenantDiv.remove();
+            };
+
+            transaction.onerror = (event) => {
+              console.error("Transaction error:", event.target.errorCode);
+            };
+          }
+        }
+
+        function formatDate(dateString) {
+          const options = { year: "numeric", month: "long", day: "numeric" };
+          return new Date(dateString).toLocaleDateString("en-GB", options);
+        }
+
+        function formatCurrency(amount, currency) {
+          return new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: currency,
+          }).format(amount);
+        }
+
+        // My Undo mark: adding the codes to handle the search functionality
+        const searchFilter = document.getElementById("searchFilter");
+        const searchBox = document.getElementById("searchBox");
+        const searchImage = document.getElementById("searchImage");
+
+        searchImage.addEventListener("click", () => {
+          const filter = searchFilter.value;
+          const query = searchBox.value.toLowerCase();
+          searchTenants(filter, query);
+        });
+
+        function searchTenants(filter, query) {
+          tenantList.innerHTML = "";
+          const transaction = db.transaction(["tenants"], "readonly");
+          const objectStore = transaction.objectStore("tenants");
+
+          objectStore.openCursor().onsuccess = (event) => {
+            const cursor = event.target.result;
+            if (cursor) {
+              const tenant = cursor.value;
+              let match = false;
+
+              switch (filter) {
+                case "allTenant":
+                  match = true;
+                  break;
+                case "tenantSearch":
+                  match = tenant.name.toLowerCase().includes(query);
+                  break;
+                case "building":
+                  match = tenant.building.toLowerCase().includes(query);
+                  break;
+                case "paidTenant":
+                  match = tenant.rentPaid >= tenant.costOfRent;
+                  break;
+                case "balance":
+                  match = tenant.balanceDue > 0;
+                  break;
+                case "overdue":
+                  match = new Date(tenant.nextPaymentDate) < new Date();
+                  break;
+              }
+
+              if (match) {
+                addTenantToList(tenant);
+              }
+
+              cursor.continue();
+            }
+          };
+        }
+      });
+    </script>
+  </body>
+</html>
