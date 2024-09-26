@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="manifest.json" />
+    <title>Ulo Login page</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="Images4Estate/Favicon3 32x32 pngegg.png"
+      sizes="32x32"
+    />
+    <!-- <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    /> -->
+    <link rel="stylesheet" href="output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body class="bg-gray-800 flex items-center justify-center h-screen">
+    <div class="text-center">
+      <img
+        src="Images4Estate/house 360.png"
+        alt="Ulo Logo"
+        class="mx-auto mb-1 h-28 w-28 md:h-28 md:w-28"
+      />
+
+      <h1 class="text-white text-5xl md:text-7xl font-bold mb-16 md:mb-16">
+        Ulo
+      </h1>
+      <div class="h-14 md:h-1"></div>
+
+      <button
+        id="openSignupModal"
+        class="bg-blue-500 text-white px-4 py-2 rounded w-24 md:w-28 mr-1 md:mr-1 border border-gray-300 shadow-md"
+      >
+        Sign Up
+      </button>
+      <button
+        id="openLoginModal"
+        class="bg-green-500 text-white px-4 py-2 rounded w-24 md:w-28 border border-gray-300 shadow-md"
+      >
+        Login
+      </button>
+    </div>
+
+    <!-- Signup Modal -->
+    <div
+      id="signupModal"
+      class="fixed inset-0 bg-gray-800 bg-opacity-50 hidden flex items-center justify-center"
+    >
+      <div class="bg-blue-100 p-6 rounded-lg w-96">
+        <div class="flex justify-end">
+          <button id="closeSignupModal" class="text-gray-500">×</button>
+        </div>
+        <h2 class="text-2xl font-bold mb-4">Create Account</h2>
+        <form id="signupForm">
+          <div class="mb-4">
+            <label for="signupUsername" class="block text-gray-700"
+              >Username</label
+            >
+            <input
+              type="text"
+              id="signupUsername"
+              class="w-full px-3 py-2 border rounded"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="signupPassword" class="block text-gray-700"
+              >Password</label
+            >
+            <input
+              type="password"
+              id="signupPassword"
+              class="w-full px-3 py-2 border rounded"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="signupConfirmPassword" class="block text-gray-700"
+              >Confirm Password</label
+            >
+            <input
+              type="password"
+              id="signupConfirmPassword"
+              class="w-full px-3 py-2 border rounded"
+            />
+          </div>
+          <button
+            type="submit"
+            class="bg-blue-500 text-white px-4 py-2 border border-white-800 shadow-md rounded"
+          >
+            Sign Up
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Authorization Modal -->
+    <div
+      id="authModal"
+      class="fixed inset-0 bg-gray-800 bg-opacity-50 hidden flex items-center justify-center"
+    >
+      <div class="bg-blue-100 p-6 rounded-lg w-96">
+        <div class="flex justify-end">
+          <button id="closeAuthModal" class="text-gray-500">×</button>
+        </div>
+        <h2 class="text-2xl font-bold mb-4">Authorization</h2>
+        <form id="authForm">
+          <div class="mb-4">
+            <label for="authCode" class="block text-gray-700"
+              >Authorization Code</label
+            >
+            <input
+              type="text"
+              id="authCode"
+              class="w-full px-3 py-2 border rounded"
+            />
+          </div>
+          <button
+            type="submit"
+            class="bg-blue-500 text-white px-4 py-2 border border-white-800 shadow-md rounded"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div
+      id="loginModal"
+      class="fixed inset-0 bg-gray-800 bg-opacity-50 hidden flex items-center justify-center"
+    >
+      <div class="bg-green-100 p-6 rounded-lg w-96">
+        <div class="flex justify-end">
+          <button id="closeLoginModal" class="text-gray-500">×</button>
+        </div>
+        <h2 class="text-2xl font-bold mb-4 mt-4">Login</h2>
+        <form id="loginForm">
+          <div class="mb-4">
+            <label for="loginUsername" class="block text-gray-700"
+              >Username</label
+            >
+            <input
+              type="text"
+              id="loginUsername"
+              class="w-full px-3 py-2 border rounded"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="loginPassword" class="block text-gray-700"
+              >Password</label
+            >
+            <input
+              type="password"
+              id="loginPassword"
+              class="w-full px-3 py-2 border rounded"
+            />
+          </div>
+          <button
+            type="submit"
+            class="bg-green-500 text-white px-4 py-2 mb-10 border border-white-800 shadow-md rounded"
+          >
+            Login
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div
+      id="changePasswordModal"
+      class="fixed inset-0 bg-gray-800 bg-opacity-50 hidden flex items-center justify-center"
+    >
+      <div class="bg-white p-6 rounded-lg w-96">
+        <div class="flex justify-end">
+          <button id="closeChangePasswordModal" class="text-gray-500">×</button>
+        </div>
+        <h2 class="text-2xl font-bold mb-4">Change Password</h2>
+        <form id="changePasswordForm">
+          <div class="mb-4">
+            <label for="currentPassword" class="block text-gray-700"
+              >Current Password</label
+            >
+            <input
+              type="password"
+              id="currentPassword"
+              class="w-full px-3 py-2 border rounded"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="newPassword" class="block text-gray-700"
+              >New Password</label
+            >
+            <input
+              type="password"
+              id="newPassword"
+              class="w-full px-3 py-2 border rounded"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="confirmNewPassword" class="block text-gray-700"
+              >Confirm New Password</label
+            >
+            <input
+              type="password"
+              id="confirmNewPassword"
+              class="w-full px-3 py-2 border rounded"
+            />
+          </div>
+          <button
+            type="submit"
+            class="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            Change Password
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- <script src="app.js"></script> -->
+    <script>
+      // app.js
+      document.addEventListener("DOMContentLoaded", () => {
+        const openSignupModal = document.getElementById("openSignupModal");
+        const closeSignupModal = document.getElementById("closeSignupModal");
+        const signupModal = document.getElementById("signupModal");
+        const signupForm = document.getElementById("signupForm");
+
+        const openLoginModal = document.getElementById("openLoginModal");
+        const closeLoginModal = document.getElementById("closeLoginModal");
+        const loginModal = document.getElementById("loginModal");
+        const loginForm = document.getElementById("loginForm");
+
+        const authModal = document.getElementById("authModal");
+        const closeAuthModal = document.getElementById("closeAuthModal");
+        const authForm = document.getElementById("authForm");
+
+        const changePasswordModal = document.getElementById(
+          "changePasswordModal"
+        );
+        const closeChangePasswordModal = document.getElementById(
+          "closeChangePasswordModal"
+        );
+        const changePasswordForm =
+          document.getElementById("changePasswordForm");
+
+        openSignupModal.addEventListener("click", () =>
+          signupModal.classList.remove("hidden")
+        );
+        closeSignupModal.addEventListener("click", () =>
+          signupModal.classList.add("hidden")
+        );
+
+        openLoginModal.addEventListener("click", () =>
+          loginModal.classList.remove("hidden")
+        );
+        closeLoginModal.addEventListener("click", () =>
+          loginModal.classList.add("hidden")
+        );
+
+        closeAuthModal.addEventListener("click", () =>
+          authModal.classList.add("hidden")
+        );
+
+        closeChangePasswordModal.addEventListener("click", () =>
+          changePasswordModal.classList.add("hidden")
+        );
+
+        signupForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const username = document.getElementById("signupUsername").value;
+          const password = document.getElementById("signupPassword").value;
+          const confirmPassword = document.getElementById(
+            "signupConfirmPassword"
+          ).value;
+
+          if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+          }
+
+          authModal.classList.remove("hidden");
+        });
+
+        authForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const authCode = document.getElementById("authCode").value;
+
+          if (authCode === "Nwokeoma") {
+            const username = document.getElementById("signupUsername").value;
+            const password = document.getElementById("signupPassword").value;
+
+            // Hash and store password
+            const hashedPassword = await hashPassword(password);
+            storeUser(username, hashedPassword);
+
+            authModal.classList.add("hidden");
+            signupModal.classList.add("hidden");
+            alert("Account created successfully!");
+          } else {
+            alert("Invalid authorization code!");
+          }
+        });
+
+        loginForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const username = document.getElementById("loginUsername").value;
+          const password = document.getElementById("loginPassword").value;
+
+          if (username === "Chicken" && password === "Eggplant") {
+            alert("Login successful!");
+            loginModal.classList.add("hidden");
+            window.location.href = "estate1.html"; // Redirect to estate1.html (Welcome - Home page)
+          } else {
+            const user = await getUser(username);
+            if (user && (await verifyPassword(password, user.password))) {
+              alert("Login successful!");
+              loginModal.classList.add("hidden");
+              window.location.href = "estate1.html"; // Redirect to estate1.html (Welcome - Home page)
+            } else {
+              alert("Invalid username or password!");
+            }
+          }
+        });
+
+        changePasswordForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const currentPassword =
+            document.getElementById("currentPassword").value;
+          const newPassword = document.getElementById("newPassword").value;
+          const confirmNewPassword =
+            document.getElementById("confirmNewPassword").value;
+
+          if (newPassword !== confirmNewPassword) {
+            alert("New passwords do not match!");
+            return;
+          }
+
+          const username = "currentLoggedInUser"; // Replace with actual logged-in user
+          const user = await getUser(username);
+
+          if (user && (await verifyPassword(currentPassword, user.password))) {
+            const hashedNewPassword = await hashPassword(newPassword);
+            updateUserPassword(username, hashedNewPassword);
+            alert("Password changed successfully!");
+            changePasswordModal.classList.add("hidden");
+          } else {
+            alert("Current password is incorrect!");
+          }
+        });
+
+        async function hashPassword(password) {
+          const encoder = new TextEncoder();
+          const data = encoder.encode(password);
+          const hash = await crypto.subtle.digest("SHA-256", data);
+          return btoa(String.fromCharCode(...new Uint8Array(hash)));
+        }
+
+        async function verifyPassword(inputPassword, storedPassword) {
+          const hashedInputPassword = await hashPassword(inputPassword);
+          return hashedInputPassword === storedPassword;
+        }
+
+        function storeUser(username, hashedPassword) {
+          const request = indexedDB.open("usersDB", 1);
+
+          request.onupgradeneeded = (event) => {
+            const db = event.target.result;
+            const objectStore = db.createObjectStore("users", {
+              keyPath: "username",
+            });
+            objectStore.createIndex("password", "password", { unique: false });
+          };
+
+          request.onsuccess = (event) => {
+            const db = event.target.result;
+            const transaction = db.transaction(["users"], "readwrite");
+            const objectStore = transaction.objectStore("users");
+            objectStore.add({ username, password: hashedPassword });
+          };
+        }
+
+        function getUser(username) {
+          return new Promise((resolve, reject) => {
+            const request = indexedDB.open("usersDB", 1);
+
+            request.onsuccess = (event) => {
+              const db = event.target.result;
+              const transaction = db.transaction(["users"], "readonly");
+              const objectStore = transaction.objectStore("users");
+              const getRequest = objectStore.get(username);
+
+              getRequest.onsuccess = () => {
+                resolve(getRequest.result);
+              };
+
+              getRequest.onerror = () => {
+                reject(getRequest.error);
+              };
+            };
+          });
+        }
+
+        function updateUserPassword(username, hashedPassword) {
+          const request = indexedDB.open("usersDB", 1);
+
+          request.onsuccess = (event) => {
+            const db = event.target.result;
+            const transaction = db.transaction(["users"], "readwrite");
+            const objectStore = transaction.objectStore("users");
+            const getRequest = objectStore.get(username);
+
+            getRequest.onsuccess = () => {
+              const user = getRequest.result;
+              user.password = hashedPassword;
+              objectStore.put(user);
+            };
+          };
+        }
+      });
+
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/service-worker.js").then(
+            (registration) => {
+              console.log(
+                "ServiceWorker registration successful with scope: ",
+                registration.scope
+              );
+            },
+            (error) => {
+              console.log("ServiceWorker registration failed: ", error);
+            }
+          );
+        });
+      }
+    </script>
+  </body>
+</html>
