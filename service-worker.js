@@ -8,6 +8,7 @@ const urlsToCache = [
   "/styles.css",
   "/input.css",
   "/output.css",
+  "/manifest.json",
   "/Images4Estate/Favicon 32x32.jpg",
   "/Images4Estate/house 360 192x192.png",
   "/Images4Estate/house 360 512x512.png",
