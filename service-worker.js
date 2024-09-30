@@ -1,6 +1,5 @@
 const CACHE_NAME = "ulo-cache-v1";
 const urlsToCache = [
-  
   "/service-worker.js",
   "/index.html",
   "/estate1.html",
@@ -33,7 +32,9 @@ const urlsToCache = [
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(urlsToCache);
+      return cache.addAll(urlsToCache).catch((error) => {
+        console.error("Failed to cache resources:", error);
+      });
     })
   );
 });
