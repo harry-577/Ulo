@@ -1,11 +1,6 @@
 const CACHE_NAME = "ulo-cache-v1";
-
-
-self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll([
-  "/",
+const urlsToCache = [
+  
   "/service-worker.js",
   "/index.html",
   "/estate1.html",
@@ -33,7 +28,12 @@ self.addEventListener("install", (event) => {
   "/Images4Estate/Search.256.png",
   "/Images4Estate/share_google.svg",
   "/Images4Estate/warning_Google.svg",
-]);
+];
+
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(urlsToCache);
     })
   );
 });
