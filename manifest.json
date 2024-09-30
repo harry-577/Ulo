@@ -5,6 +5,7 @@
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#3b82f6",
+    "description": "Ulo - Your real estate companion",
     "icons": [
         {
             "src": "images4Estate/house 360 192x192.png",
