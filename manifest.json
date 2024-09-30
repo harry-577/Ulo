@@ -8,14 +8,15 @@
     "description": "Ulo - Your real estate companion",
     "icons": [
         {
-            "src": "images4Estate/house 360 192x192.png",
+            "src": "https://github.com/harry-577/Ulo/images4Estate/house 360 192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "images4Estate/house 360 512x512.png",
+            "src": "https://github.com/harry-577/Ulo/images4Estate/house 360 512x512.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
         }
     ]
 }
