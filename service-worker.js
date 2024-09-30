@@ -1,6 +1,7 @@
 const CACHE_NAME = "ulo-cache-v1";
 const urlsToCache = [
   "/",
+  "/service-worker.js",
   "/index.html",
   "/estate1.html",
   "/buildingdb2.html",
@@ -9,7 +10,6 @@ const urlsToCache = [
   "/input.css",
   "/output.css",
   "/manifest.json",
-  "/service-worker.js",
   "/Images4Estate/Favicon 32x32.jpg",
   "/Images4Estate/house 360 192x192.png",
   "/Images4Estate/house 360 512x512.png",
