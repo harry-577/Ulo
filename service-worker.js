@@ -1,7 +1,6 @@
 const CACHE_NAME = "ulo-cache-v1";
 const urlsToCache = [
   "/",
-  "/Ulo/service-worker.js",
   "/index.html",
   "/estate1.html",
   "/buildingdb2.html",
