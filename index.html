@@ -428,21 +428,24 @@
       });
     </script>
     <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("/Ulo/service-worker.js").then(
-            (registration) => {
-              console.log(
-                "ServiceWorker registration successful with scope: ",
-                registration.scope
-              );
-            },
-            (error) => {
-              console.log("ServiceWorker registration failed: ", error);
-            }
-          );
-        });
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", async () => {
+      try {
+        const registration = await navigator.serviceWorker.register("/Ulo/service-worker.js");
+        console.log("ServiceWorker registration successful with scope: ", registration.scope);
+
+        // Request persistent storage
+        if (navigator.storage && navigator.storage.persist) {
+          const isPersisted = await navigator.storage.persist();
+          console.log(`Storage persistence granted: ${isPersisted}`);
+        } else {
+          console.log("Persistent storage is not supported.");
+        }
+      } catch (error) {
+        console.log("ServiceWorker registration failed: ", error);
       }
-    </script>
+    });
+  }
+</script>
   </body>
 </html>
