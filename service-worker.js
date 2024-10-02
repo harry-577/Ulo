@@ -35,7 +35,9 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       console.log("Opened cache");
-      return cache.addAll(urlsToCache).catch((error) => {
+      return cache.addAll(urlsToCache).then(() => {
+        console.log("All resources have been cached");
+      }).catch((error) => {
         console.error("Failed to cache resources:", error);
       });
     })
@@ -75,4 +77,3 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
-
