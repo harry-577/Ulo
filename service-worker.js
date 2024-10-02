@@ -30,8 +30,11 @@ const urlsToCache = [
 ];
 
 self.addEventListener("install", (event) => {
+  console.log("Service Worker installing.");
+  self.skipWaiting(); // Force the waiting service worker to become the active service worker
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
+      console.log("Opened cache");
       return cache.addAll(urlsToCache).catch((error) => {
         console.error("Failed to cache resources:", error);
       });
@@ -39,10 +42,37 @@ self.addEventListener("install", (event) => {
   );
 });
 
+self.addEventListener("activate", (event) => {
+  console.log("Service Worker activating.");
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          if (cacheName !== CACHE_NAME) {
+            console.log("Deleting old cache:", cacheName);
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
+  clients.claim(); // Take control of all clients as soon as the service worker becomes active
+});
+
 self.addEventListener("fetch", (event) => {
+  console.log("Fetch event for ", event.request.url);
   event.respondWith(
     caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
+      if (response) {
+        console.log("Found ", event.request.url, " in cache");
+        return response;
+      }
+      console.log("Network request for ", event.request.url);
+      return fetch(event.request);
+    }).catch((error) => {
+      console.error("Fetch failed; returning offline page instead.", error);
+      return caches.match("/");
     })
   );
 });
+
