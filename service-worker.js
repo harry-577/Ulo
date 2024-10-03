@@ -76,6 +76,7 @@ self.addEventListener('fetch', (event) => {
           return caches.match('/');
         }
         return caches.open(CACHE_NAME).then((cache) => {
+          console.log('Caching new resource: ', event.request.url);
           cache.put(event.request, networkResponse.clone());
           return networkResponse;
         });
