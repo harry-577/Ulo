@@ -29,29 +29,29 @@ const urlsToCache = [
   "https://raw.githubusercontent.com/harry-577/Ulo/main/Images4Estate/warning_Google.svg",
 ];
 
-self.addEventListener("install", (event) => {
-  console.log("Service Worker installing.");
+self.addEventListener('install', (event) => {
+  console.log('Service Worker installing.');
   self.skipWaiting(); // Force the waiting service worker to become the active service worker
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log("Opened cache");
+      console.log('Opened cache');
       return cache.addAll(urlsToCache).then(() => {
-        console.log("All resources have been cached");
+        console.log('All resources have been cached');
       }).catch((error) => {
-        console.error("Failed to cache resources:", error);
+        console.error('Failed to cache resources:', error);
       });
     })
   );
 });
 
-self.addEventListener("activate", (event) => {
-  console.log("Service Worker activating.");
+self.addEventListener('activate', (event) => {
+  console.log('Service Worker activating.');
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME) {
-            console.log("Deleting old cache:", cacheName);
+            console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
@@ -61,19 +61,24 @@ self.addEventListener("activate", (event) => {
   clients.claim(); // Take control of all clients as soon as the service worker becomes active
 });
 
-self.addEventListener("fetch", (event) => {
-  console.log("Fetch event for ", event.request.url);
+self.addEventListener('fetch', (event) => {
+  console.log('Fetch event for ', event.request.url);
   event.respondWith(
     caches.match(event.request).then((response) => {
       if (response) {
-        console.log("Found ", event.request.url, " in cache");
+        console.log('Found ', event.request.url, ' in cache');
         return response;
       }
-      console.log("Network request for ", event.request.url);
-      return fetch(event.request);
+      console.log('Network request for ', event.request.url);
+      return fetch(event.request).then((networkResponse) => {
+        return caches.open(CACHE_NAME).then((cache) => {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        });
+      });
     }).catch((error) => {
-      console.error("Fetch failed; returning offline page instead.", error);
-      return caches.match("/");
+      console.error('Fetch failed; returning offline page instead.', error);
+      return caches.match('/');
     })
   );
 });
