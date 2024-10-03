@@ -71,6 +71,10 @@ self.addEventListener('fetch', (event) => {
       }
       console.log('Network request for ', event.request.url);
       return fetch(event.request).then((networkResponse) => {
+        if (!networkResponse || networkResponse.status !== 200) {
+          console.error('Network request failed for ', event.request.url);
+          return caches.match('/');
+        }
         return caches.open(CACHE_NAME).then((cache) => {
           cache.put(event.request, networkResponse.clone());
           return networkResponse;
@@ -78,7 +82,7 @@ self.addEventListener('fetch', (event) => {
       });
     }).catch((error) => {
       console.error('Fetch failed; returning offline page instead.', error);
-      return caches.match('/Ulo/');
+      return caches.match('/');
     })
   );
 });
