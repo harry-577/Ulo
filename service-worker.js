@@ -78,7 +78,7 @@ self.addEventListener('fetch', (event) => {
       });
     }).catch((error) => {
       console.error('Fetch failed; returning offline page instead.', error);
-      return caches.match('/');
+      return caches.match('/Ulo/');
     })
   );
 });
