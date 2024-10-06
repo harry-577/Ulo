@@ -656,7 +656,11 @@
                 text: tenantDetails,
                 url: window.location.href,
               })
-              .catch(console.error);
+             // Latest introduction of 1) two lines of code and 2) commenting out
+              // of .catch(console.error); You can undo the two steps
+              .then(() => console.log("Share successful"))
+              .catch((error) => console.error("Error sharing:", error));
+            // .catch(console.error);
           } else {
             alert("Sharing not supported on this browser.");
           }
