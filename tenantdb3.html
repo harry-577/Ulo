@@ -649,22 +649,23 @@
             Next Payment Date: ${tenant.nextPaymentDate}
             Notes: ${tenant.notes}
         `;
-          if (navigator.share) {
-            navigator
-              .share({
-                title: "Tenant Details",
-                text: tenantDetails,
-                url: window.location.href,
-              })
-             // Latest introduction of 1) two lines of code and 2) commenting out
-              // of .catch(console.error); You can undo the two steps
-              .then(() => console.log("Share successful"))
-              .catch((error) => console.error("Error sharing:", error));
-            // .catch(console.error);
-          } else {
-            alert("Sharing not supported on this browser.");
-          }
-        }
+         if (navigator.share) {
+        navigator.share({
+            title: "Tenant Details",
+            text: tenantDetails,
+            url: window.location.href,
+        })
+        .then(() => console.log('Share successful'))
+        .catch((error) => {
+            console.error('Error sharing:', error);
+            // Fallback to WhatsApp sharing
+            const whatsappUrl = `intent://send?text=${encodeURIComponent(tenantDetails + '\n' + window.location.href)}#Intent;scheme=whatsapp;package=com.whatsapp;end`;
+            window.location.href = whatsappUrl;
+        });
+    } else {
+        alert("Sharing not supported on this browser.");
+    }
+}
 
         function deleteTenant(id, tenantDiv) {
           if (confirm("Are you sure you want to delete this tenant?")) {
